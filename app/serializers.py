@@ -1,6 +1,7 @@
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 from rest_framework.settings import api_settings
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -11,7 +12,7 @@ from app.models import User
 class UserDataSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name')
+        fields = ('id', 'username','email', 'activation_code')
 
 
 # class LoginSerializer(TokenObtainPairSerializer):
@@ -45,12 +46,20 @@ class RegistrationSerializer(ModelSerializer):
         model = User
         fields = ['email']
 
+
 class VerifyEmailSerializer(ModelSerializer):
+    username = CharField(max_length=255)
+    def validate_email(self, email):
+        if not User.objects.filter(email=email).exists():
+            raise ValidationError("This email hasn't in base")
+        return email
+
+    def validate_username(self, username):
+        if User.objects.filter(username=username).exists():
+            raise ValidationError('This username already taken')
+        return username
 
     class Meta:
         model = User
-        fields = ['activation_code','email']
-
-
-
+        fields = ['username', 'email', 'activation_code']
 
