@@ -35,7 +35,7 @@ class Util:
         return message_data
 
 
-def send_email(activation_code: str, email: str,username:str):
+def send_email(activation_code: str, email: str):
     user = User.objects.get(email=email)
 
     message_data = {
@@ -46,7 +46,6 @@ def send_email(activation_code: str, email: str,username:str):
     }
     if user.activation_code == activation_code:
         user.is_verified = True
-        user.username = username
         user.save()
         return message_data
     return error_message_data
