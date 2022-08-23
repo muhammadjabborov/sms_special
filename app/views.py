@@ -5,6 +5,7 @@ from django.shortcuts import render
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
+from rest_framework.decorators import action
 
 from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.parsers import FileUploadParser, MultiPartParser, FormParser
@@ -80,15 +81,14 @@ class ImageModelViewSet(ModelViewSet):
     parser_classes = (MultiPartParser, )
     permission_classes = (AllowAny,)
 
-
-    def post(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = ImageModelSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         data = {
             'message': 'Successfull add your skill'
         }
-        return Response(data=data, status=status.HTTP_201_CREATED)
+        return Response(data, status=status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
         icons = Image.objects.all()
