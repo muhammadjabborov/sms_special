@@ -126,6 +126,7 @@ STATIC_URL = '/static/'
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ORIGIN_WHITELIST = [
+    "https://abdullokh.netlify.app/",
     "http://localhost:3000"
 ]
 
