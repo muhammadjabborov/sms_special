@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'drf_yasg',
+    'PIL',
     'corsheaders'
 ]
 
