@@ -78,17 +78,14 @@ class ImageModelViewSet(ModelViewSet):
     serializer_class = ImageModelSerializer
     queryset = Image.objects.all()
     lookup_url_kwarg = 'pk'
-    parser_classes = (MultiPartParser, )
+    parser_classes = (MultiPartParser,)
     permission_classes = (AllowAny,)
 
     def create(self, request, *args, **kwargs):
         serializer = ImageModelSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        data = {
-            'message': 'Successfull add your skill'
-        }
-        return Response(data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
         icons = Image.objects.all()
