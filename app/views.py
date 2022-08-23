@@ -28,12 +28,13 @@ from app.serializers import RegistrationSerializer, VerifyEmailSerializer, UserD
 
 
 class LoginAPIView(TokenObtainPairView):
-    permission_classes = (AllowAny,)
     serializer_class = LoginSerializer
 
 
 class RegisterAPIView(GenericAPIView):
     serializer_class = RegistrationSerializer
+
+    # permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -53,6 +54,8 @@ class RegisterAPIView(GenericAPIView):
 class VertifyAPIEmailView(GenericAPIView):
     serializer_class = VerifyEmailSerializer
 
+    # permission_classes = (IsAuthenticated,)
+
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -71,7 +74,7 @@ class VertifyAPIEmailView(GenericAPIView):
 class UserAPIList(ListAPIView):
     serializer_class = UserDataSerializer
     queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
 
 class ImageModelViewSet(ModelViewSet):
@@ -79,7 +82,8 @@ class ImageModelViewSet(ModelViewSet):
     queryset = Image.objects.all()
     lookup_url_kwarg = 'pk'
     parser_classes = (MultiPartParser,)
-    permission_classes = (AllowAny,)
+
+    # permission_classes = (IsAuthenticated,)
 
     def create(self, request, *args, **kwargs):
         serializer = ImageModelSerializer(data=request.data)

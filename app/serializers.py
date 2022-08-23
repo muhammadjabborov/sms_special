@@ -59,6 +59,7 @@ class RegistrationSerializer(Serializer):
         fields = ['username', 'password', 'email']
 
 
+
 class VerifyEmailSerializer(ModelSerializer):
 
     def validate_email(self, email):
