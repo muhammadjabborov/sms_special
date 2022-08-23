@@ -74,14 +74,6 @@ TEMPLATES = [
     },
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000"
-]
-
 WSGI_APPLICATION = 'sms_special.wsgi.application'
 
 # Database
@@ -130,6 +122,8 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 STATIC_URL = '/static/'
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
