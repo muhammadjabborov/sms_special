@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from corsheaders.defaults import default_headers
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -123,15 +125,42 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 STATIC_URL = '/static/'
 
+# CORS_ALLOW_ALL_ORIGINS = True
+#
+# CORS_ORIGIN_WHITELIST = [
+#     "https://abdullokh.netlify.app",
+#     "http://abdullokh.netlify.app",
+#     "http://localhost:3000",
+#     "http://localhost",
+#     "http://localhost:8000"
+# ]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://abdullokh.netlify.app",
+    "http://localhost",
+    "http://localhost:3000",
+    "http://localhost:8000",
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ORIGIN_WHITELIST = [
-    "https://abdullokh.netlify.app",
-    "http://abdullokh.netlify.app",
-    "http://localhost:3000",
-    "http://localhost",
-    "http://localhost:8000"
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
 ]
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'cache-control',
+    'Content-Type',
+    'Authorization',
+    'Language',
+)
 
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
