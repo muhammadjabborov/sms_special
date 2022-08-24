@@ -126,8 +126,11 @@ STATIC_URL = '/static/'
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ORIGIN_WHITELIST = [
-    "https://abdullokh.netlify.app/",
-    "http://localhost:3000"
+    "https://abdullokh.netlify.app",
+    "http://abdullokh.netlify.app",
+    "http://localhost:3000",
+    "http://localhost",
+    "http://localhost:8000"
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
