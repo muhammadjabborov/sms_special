@@ -125,42 +125,18 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 STATIC_URL = '/static/'
 
-# CORS_ALLOW_ALL_ORIGINS = True
-#
-# CORS_ORIGIN_WHITELIST = [
-#     "https://abdullokh.netlify.app",
-#     "http://abdullokh.netlify.app",
-#     "http://localhost:3000",
-#     "http://localhost",
-#     "http://localhost:8000"
-# ]
-
-
-CORS_ALLOWED_ORIGINS = [
-    "https://abdullokh.netlify.app",
-    "http://localhost",
-    "http://localhost:3000",
-    "http://localhost:8000",
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
+CORS_ALLOWED_ORIGINS = [
+    "https://abdullokh.netlify.app"
 ]
 
-CORS_ALLOW_HEADERS = default_headers + (
-    'cache-control',
-    'Content-Type',
-    'Authorization',
-    'Language',
-)
+CORS_ORIGIN_WHITELIST = [
+    "https://abdullokh.netlify.app",
+    "http://localhost:3000",
+    "http://localhost",
+    "http://localhost:8000"
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
